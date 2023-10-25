@@ -1,17 +1,16 @@
-from src.widget import get_accounts_mask
+from src.widget import get_accounts_mask, get_mask_cards
 
 
 def main():
-    from src.masks import get_mask_card, returning_account_mask
-    from src.widget import get_mask_cards
+
     name_card = "Maestro"
     number_card = "1596837868705199"
 
     name_account = "Счет"
     number_account = "64686473678894779589"
 
-    # print(get_mask_card(numbers_card))
-    # print(returning_account_mask(number_account))
+    time = "2018-07-11T02:26:18.671407"
+
     print(get_mask_cards(name_card, number_card))
     print(get_accounts_mask(name_account, number_account))
 
