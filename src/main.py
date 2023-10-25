@@ -1,25 +1,19 @@
+from src.widget import get_accounts_mask
+
+
 def main():
     from src.masks import get_mask_card, returning_account_mask
+    from src.widget import get_mask_cards
+    name_card = "Maestro"
+    number_card = "1596837868705199"
 
-    numbers_card = "7000792289606361"
+    name_account = "Счет"
+    number_account = "64686473678894779589"
 
-    number_account = "73654108430135874305"
-
-    numbers_card_dict = {
-        "Maestro": 1596837868705199,
-        "MasterCard": 7158300734726758,
-        "Visa Classic": 6831982476737658,
-        "Visa Platinum": 8990922113665229,
-        "Visa Gold": 5999414228426353,
-        }
-    number_account_dict = {
-        "Счет": 64686473678894779589,
-        "Счет": 35383033474447895560,
-        "Счет": 73654108430135874305
-        }
-
-    print(get_mask_card(numbers_card))
-    print(returning_account_mask(number_account))
+    # print(get_mask_card(numbers_card))
+    # print(returning_account_mask(number_account))
+    print(get_mask_cards(name_card, number_card))
+    print(get_accounts_mask(name_account, number_account))
 
 
 if __name__ == "__main__":

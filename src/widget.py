@@ -1,18 +1,14 @@
-def get_mask_cards(numbers_card: dict) -> dict:
+def get_mask_cards(name_card: str, number_card: str):
     """
     Функция возврощает информацию и маску номеров карт
     в формате: Имя Карты XXXX XX** **** XXXX
     """
-    mask_card = {}
-    for name_card, card in numbers_card:
-        mask_card[name_card] = card[0:4] + " " + card[3:6] + "** **** " + card[-4:]
-
+    mask_card = name_card + " " + number_card[0:4] + " " + number_card[3:6] + "** **** " + number_card[-4:]
     return mask_card
 
 
-def returning_accounts_mask(accounts_numbers: dict) -> dict:
+def get_accounts_mask(name_account: str, number_account: str) -> str:
     """Функция возврощает маску счетой в виде: **XXXX"""
-    mask_account = {}
-    for name_account, mask_account in accounts_numbers:
-        mask_account[name_account] = "**" + mask_account[-4:]
+
+    mask_account = name_account + " **" + number_account[-4:]
     return mask_account
