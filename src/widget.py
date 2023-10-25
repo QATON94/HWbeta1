@@ -14,7 +14,7 @@ def get_accounts_mask(name_account: str, number_account: str) -> str:
     return mask_account
 
 
-def get_data(time: str) -> str:
+def get_data(datatime: str) -> str:
     """Функция возврощает дату"""
-    get_time = time[8:10] + "." + time[5:7] + "." + time[0:4]
-    return get_time
+    get_data = datatime[8:10] + "." + datatime[5:7] + "." + datatime[0:4]
+    return get_data
