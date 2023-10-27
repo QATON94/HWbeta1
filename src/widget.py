@@ -15,19 +15,18 @@ def get_dict_cards_and_accounts(cards_and_accounts: str) -> dict:
     return dict_
 
 
-def get_mask_cards_and_accounts(cards_and_accounts: str) -> str:
+def get_mask_cards_and_accounts(info: str) -> str:
     """Функция проверяет счет или карта и возврощает москированный список"""
-    dict_cards_and_accounts = get_dict_cards_and_accounts(cards_and_accounts)
-    mask_cards_and_accounts = ""
-    for name, number in dict_cards_and_accounts.items():
-        if "cчет" == name.islower():
-            mask_cards_and_accounts += (
-                name + " " + returning_account_mask(number) + "\n"
-            )
-        else:
-            mask_cards_and_accounts += name + " " + get_mask_card(number) + "\n"
+    list_info = info.split()
+    name = " ".join(list_info[:-1])
+    number = list_info[-1]
 
-    return mask_cards_and_accounts
+    if "cчет" == name.islower():
+        masked_info = (name + " " + returning_account_mask(number))
+    else:
+        masked_info = name + " " + get_mask_card(number)
+
+    return masked_info
 
 
 def get_data(datatime: str) -> str:
