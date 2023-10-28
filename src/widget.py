@@ -3,10 +3,10 @@ from src.masks import get_mask_card, returning_account_mask
 
 def get_dict_cards_and_accounts(cards_and_accounts: str) -> dict:
     """Функция преобразовывает строку в словарь"""
-    cards_and_accounts = cards_and_accounts.strip().split()
+    cards_ = cards_and_accounts.strip().split()
     name = ""
     dict_ = {}
-    for word in cards_and_accounts:
+    for word in cards_:
         if word.isdigit():
             dict_[name] = word
             name = ""
@@ -22,7 +22,7 @@ def get_mask_cards_and_accounts(info: str) -> str:
     number = list_info[-1]
 
     if "cчет" == name.islower():
-        masked_info = (name + " " + returning_account_mask(number))
+        masked_info = name + " " + returning_account_mask(number)
     else:
         masked_info = name + " " + get_mask_card(number)
 
