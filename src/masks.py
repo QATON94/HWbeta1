@@ -3,7 +3,7 @@ def get_mask_card(number_card: str) -> str:
     Функция возврощает маску номера карты
     в формате XXXX XX** **** XXXX
     """
-    mask_card = number_card[0:4] + " " + number_card[3:6] + "** **** " + number_card[-4:]
+    mask_card = number_card[0:4] + " " + number_card[4:6] + "** **** " + number_card[-4:]
     return mask_card
 
 
