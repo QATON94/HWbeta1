@@ -1,27 +1,12 @@
 from src.masks import get_mask_card, returning_account_mask
 
 
-def get_dict_cards_and_accounts(cards_and_accounts: str) -> dict:
-    """Функция преобразовывает строку в словарь"""
-    cards_ = cards_and_accounts.strip().split()
-    name = ""
-    dict_ = {}
-    for word in cards_:
-        if word.isdigit():
-            dict_[name] = word
-            name = ""
-        else:
-            name += " " + word
-    return dict_
-
-
 def get_mask_cards_and_accounts(info: str) -> str:
     """Функция проверяет счет или карта и возврощает москированный список"""
     list_info = info.split()
-    name = " ".join(list_info[:-1])
+    name = "".join(list_info[:-1])
     number = list_info[-1]
-
-    if "cчет" == name.islower():
+    if name.lower() == "счет":
         masked_info = name + " " + returning_account_mask(number)
     else:
         masked_info = name + " " + get_mask_card(number)

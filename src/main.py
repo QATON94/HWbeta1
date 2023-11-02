@@ -1,4 +1,5 @@
 from src.processing import choice_state, sort_date
+from src.widget import get_mask_cards_and_accounts, get_data
 
 
 def main() -> None:
@@ -9,9 +10,9 @@ def main() -> None:
         {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
     ]
 
-    print(choice_state(list_data))
-    print(sort_date(list_data))
-
+    # print(choice_state(list_data))
+    # print(sort_date(list_data))
+    print(get_data("2018-07-11T02:26:18.671407"))
 
 if __name__ == "__main__":
     main()
