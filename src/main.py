@@ -1,4 +1,4 @@
-from src.generators import filter_by_currency
+from src.generators import filter_by_currency, transaction_descriptions
 import json
 
 
@@ -10,6 +10,12 @@ def main() -> None:
 
     for _ in range(2):
         print(next(usd_transactions)["id"])
+
+    descriptions = transaction_descriptions(transactions)
+
+    for _ in range(5):
+        print(next(descriptions))
+
 
 
 if __name__ == "__main__":
