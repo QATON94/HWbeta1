@@ -1,7 +1,7 @@
 from datetime import datetime
 
 
-def choice_state(list_dict: list[dict], state: str = 'EXECUTED') -> list[dict]:
+def choice_state(list_dict: list[dict], state: str = "EXECUTED") -> list[dict]:
     """
     Функция возврощает список словорей у которых ключ
     state содержит переданное в функцию значение
