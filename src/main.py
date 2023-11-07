@@ -1,4 +1,5 @@
 import json
+import os
 
 from src.generators import (
     card_number_generator,
@@ -8,10 +9,10 @@ from src.generators import (
 
 
 def main() -> None:
-    with open("C:/Payton_training/HWbeta1/data/transactions.json", "r", encoding="UTF-8") as file:
+    with open(os.path.join("..", "data", "transactions.json"), "r", encoding="UTF-8") as file:
         transactions = json.load(file)
 
-    usd_transactions = filter_by_currency(transactions, "USD")
+    usd_transactions = filter_by_currency(transactions, "руб.")
 
     for _ in range(2):
         print(next(usd_transactions)["id"])
