@@ -28,4 +28,4 @@ def card_number_generator(start: int, end: int):
     for number in range(start, end + 1):
         str_number = str(number)
         num = num[: -(len(str_number))] + str_number
-        yield " ".join(num[i : i + 4] for i in range(0, len(num), 4))
+        yield " ".join(num[i: i + 4] for i in range(0, len(num), 4))
