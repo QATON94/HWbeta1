@@ -1,20 +1,21 @@
 import json
 
 
-def transaction_amount(path_: str) -> float | list:
+def transaction_amount(path_) -> float | list:
     """Функция возврощается сумму рублевых транзакций
     param path_: Путь к json файлу с данными транзакций
     return: возврощает пустой список если файл не найден, либо сумму рублевых транзакций
     """
     try:
-        with open(path_, 'r', encoding="UTF-8") as file:
+        with open(path_, "r", encoding="UTF-8") as file:
             transactions = json.load(file)
-    except json.JSONDecodeError as error:
+    except json.JSONDecodeError:
         return []
+
     if transactions == []:
         return []
     else:
-        amount_sum = 0
+        amount_sum = 0.0
         for transaction in transactions:
             try:
                 if transaction["operationAmount"]["currency"]["code"] == "RUB":
