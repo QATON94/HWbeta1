@@ -1,15 +1,18 @@
 import json
+from typing import Any
 
 
-def transaction_amount(path_) -> float | list:
+def transaction_amount(json_file_path: Any) -> float | list:
     """Функция возврощается сумму рублевых транзакций
     param path_: Путь к json файлу с данными транзакций
     return: возврощает пустой список если файл не найден, либо сумму рублевых транзакций
     """
     try:
-        with open(path_, "r", encoding="UTF-8") as file:
+        with open(json_file_path, "r", encoding="UTF-8") as file:
             transactions = json.load(file)
     except json.JSONDecodeError:
+        return []
+    except FileNotFoundError:
         return []
 
     if transactions == []:

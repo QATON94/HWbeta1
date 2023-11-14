@@ -1,4 +1,7 @@
-def filter_by_currency(transactions: list[dict], currency: str):
+from typing import Any
+
+
+def filter_by_currency(transactions: list[dict], currency: str) -> Any:
     """Функция возврощает операцию заданной валюты
     :param transactions: Список словорей с транзакциями
     :param currency: Строка с названием волюты
@@ -9,7 +12,7 @@ def filter_by_currency(transactions: list[dict], currency: str):
             yield item
 
 
-def transaction_descriptions(transactions: list):
+def transaction_descriptions(transactions: list) -> Any:
     """Функция возвращает описание каждой операции по очереди.
     :param transactions: Список словорей с транзакциями
     :yield: возвращает описание операции
@@ -18,7 +21,7 @@ def transaction_descriptions(transactions: list):
         yield item["description"]
 
 
-def card_number_generator(start: int, end: int):
+def card_number_generator(start: int, end: int) -> Any:
     """Функция генерирует номера карт в формате "XXXX XXXX XXXX XXXX"
     :param start: Начало отсчета
     :param end: Конец отсчета
@@ -28,4 +31,4 @@ def card_number_generator(start: int, end: int):
     for number in range(start, end + 1):
         str_number = str(number)
         num = num[: -(len(str_number))] + str_number
-        yield " ".join(num[i : i + 4] for i in range(0, len(num), 4))
+        yield " ".join(num[i: i + 4] for i in range(0, len(num), 4))

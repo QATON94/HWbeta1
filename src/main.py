@@ -21,6 +21,7 @@ def main() -> None:
     #
     # for card_number in card_number_generator(1, 5):
     #     print(card_number)
+    print(type(OPERATIONS_JSON))
     print(transaction_amount(OPERATIONS_JSON))
 
 
