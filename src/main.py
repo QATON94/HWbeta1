@@ -1,29 +1,27 @@
-import json
-import os
+from pathlib import Path
 
-from src.generators import (
-    card_number_generator,
-    filter_by_currency,
-    transaction_descriptions,
-)
+from src.utils import transaction_amount
 
 
 def main() -> None:
-    with open(os.path.join("..", "data", "transactions.json"), "r", encoding="UTF-8") as file:
-        transactions = json.load(file)
-
-    usd_transactions = filter_by_currency(transactions, "руб.")
-
-    for _ in range(2):
-        print(next(usd_transactions)["id"])
-
-    descriptions = transaction_descriptions(transactions)
-
-    for _ in range(5):
-        print(next(descriptions))
-
-    for card_number in card_number_generator(1, 5):
-        print(card_number)
+    ROOT_PATH = Path(__file__).parent.parent
+    OPERATIONS_JSON = ROOT_PATH.joinpath("data", "operations.json")
+    # with open(os.path.join("..", "data", "transactions.json"), "r", encoding="UTF-8") as file:
+    #     transactions = json.load(file)
+    #
+    # usd_transactions = filter_by_currency(transactions, "руб.")
+    #
+    # for _ in range(2):
+    #     print(next(usd_transactions)["id"])
+    #
+    # descriptions = transaction_descriptions(transactions)
+    #
+    # for _ in range(5):
+    #     print(next(descriptions))
+    #
+    # for card_number in card_number_generator(1, 5):
+    #     print(card_number)
+    print(transaction_amount(OPERATIONS_JSON))
 
 
 if __name__ == "__main__":
