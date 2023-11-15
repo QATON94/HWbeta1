@@ -2,30 +2,28 @@ import json
 from typing import Any
 
 
-def transaction_amount(json_file_path: Any) -> float | list:
-    """Функция возврощается сумму рублевых транзакций
-    param path_: Путь к json файлу с данными транзакций
-    return: возврощает пустой список если файл не найден, либо сумму рублевых транзакций
+def transaction_json(json_file_path: Any) -> list | dict:
+    """Функция возврощается список транзакций или пустой список
+    param path_: Путь к json файлу с транзакциями
+    return: возврощает пустой список если файл не найден, либо список транзакций
     """
     try:
         with open(json_file_path, "r", encoding="UTF-8") as file:
             transactions = json.load(file)
+        return transactions
     except json.JSONDecodeError:
         return []
     except FileNotFoundError:
         return []
 
-    if transactions == []:
-        return []
+
+def transaction_amount(transaction):
+    """Функция возврощает сумму транзакций в рублях, если не в рублях выводит ошибку
+    :param transaction: Словарь с данными о транзакции
+    :return сумма транзакции
+    :raise Ошбика если транзакция не в рублях
+    """
+    if transaction["operationAmount"]["currency"]["code"] == "RUB":
+        return float(transaction["operationAmount"]["amount"])
     else:
-        amount_sum = 0.0
-        for transaction in transactions:
-            try:
-                if transaction["operationAmount"]["currency"]["code"] == "RUB":
-                    value_amount = transaction["operationAmount"]["amount"]
-                    amount_sum += float(value_amount)
-            except ValueError:
-                print("Транзация выполнена не в рублях. Укажите транзакцию в рублях")
-            except KeyError:
-                print("Неверная сумма транзакции")
-        return round(amount_sum, 2)
+        raise ValueError("Транзация выполнена не в рублях. Укажите транзакцию в рублях")
