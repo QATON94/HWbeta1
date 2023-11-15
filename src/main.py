@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from src.utils import transaction_amount
+from src.utils import transaction_amount, transaction_json
 
 
 def main() -> None:
@@ -21,9 +21,8 @@ def main() -> None:
     #
     # for card_number in card_number_generator(1, 5):
     #     print(card_number)
-    print(type(OPERATIONS_JSON))
-    print(transaction_amount(OPERATIONS_JSON))
-
+    transactions = transaction_json(OPERATIONS_JSON)
+    print(transaction_amount(transactions[1]))
 
 if __name__ == "__main__":
     main()
