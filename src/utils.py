@@ -1,6 +1,8 @@
 import json
 from typing import Any
 
+import requests
+
 
 def transaction_json(json_file_path: Any) -> list | dict:
     """Функция возврощается список транзакций или пустой список
@@ -26,4 +28,8 @@ def transaction_amount(transaction):
     if transaction["operationAmount"]["currency"]["code"] == "RUB":
         return float(transaction["operationAmount"]["amount"])
     else:
-        raise ValueError("Транзация выполнена не в рублях. Укажите транзакцию в рублях")
+        cash_rate = requests.get('https://www.cbr-xml-daily.ru/daily_json.js').json()["Valute"]
+        name_code = transaction["operationAmount"]["currency"]["code"]
+        value = cash_rate[name_code]['Value']
+        amount_rate = round(float(value) * float(transaction["operationAmount"]["amount"]), 2)
+        return amount_rate

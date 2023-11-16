@@ -36,8 +36,8 @@
     "operationAmount": {
       "amount": "9824.07",
       "currency": {
-        "name": "USD",
-        "code": "USD"
+        "name": "EUR",
+        "code": "EUR"
       }
     },
     "description": "Перевод организации",

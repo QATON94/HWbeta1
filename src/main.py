@@ -21,8 +21,10 @@ def main() -> None:
     #
     # for card_number in card_number_generator(1, 5):
     #     print(card_number)
+
     transactions = transaction_json(OPERATIONS_JSON)
-    print(transaction_amount(transactions[1]))
+    print(transaction_amount(transactions[0]))
+
 
 if __name__ == "__main__":
     main()

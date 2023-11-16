@@ -1,3 +1,5 @@
+import os
+
 import pytest
 
 from src.utils import transaction_amount, transaction_json
@@ -41,32 +43,34 @@ def transaction_2():
     }
 
 
-@pytest.mark.parametrize("transaction, expected", [("transaction_test1.json", [{
-    "id": 441945886,
-    "state": "EXECUTED",
-    "date": "2019-08-26T10:50:58.294041",
-    "operationAmount": {
-        "amount": "31957.58",
-        "currency": {
-            "name": "руб.",
-            "code": "RUB"
-        }
-    },
-    "description": "Перевод организации",
-    "from": "Maestro 1596837868705199",
-    "to": "Счет 64686473678894779589"
-}]),
-                                                   ("transaction_test2.json", []),
-                                                   ("transaction_test3.json", [])])
-def test_transaction_json(transaction, expected):
-    amount = transaction_json(transaction)
-    assert amount == expected
+@pytest.fixture()
+def path1():
+    test_operations_json1 = os.path.join("..", "data", "transaction_test1.json")
+    return test_operations_json1
+
+
+@pytest.fixture()
+def path2():
+    test_operations_json2 = os.path.join("..", "data", "transaction_test2.json")
+    return test_operations_json2
+
+
+def test_transaction_json(path1, path2, transaction_1):
+    amount1 = transaction_json(path1)
+    amount2 = transaction_json(path2)
+    amount3 = transaction_json(" ")
+    assert amount1 == transaction_1
+    assert amount2 == []
+    assert amount3 == []
 
 
 def test_transaction_amount(transaction_1):
     assert transaction_amount(transaction_1) == 31957.58
 
 
-def test_error_transaction_amount(transaction_2):
-    with pytest.raises(ValueError):
-        transaction_amount(transaction_2)
+def test_transaction_usd_amount(transaction_2):
+    assert transaction_amount(transaction_2) == 731262.91
+
+# def test_error_transaction_amount(transaction_2):
+#     with pytest.raises(ValueError):
+#         transaction_amount(transaction_2)
