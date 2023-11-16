@@ -3,6 +3,7 @@ import os
 import pytest
 
 from src.utils import transaction_amount, transaction_json
+from unittest.mock import patch
 
 
 @pytest.fixture()
@@ -68,8 +69,14 @@ def test_transaction_amount(transaction_1):
     assert transaction_amount(transaction_1) == 31957.58
 
 
+
 def test_transaction_usd_amount(transaction_2):
-    assert transaction_amount(transaction_2) == 731262.91
+    with patch('requests.get') as mock_get:
+        mock_get.return_value.json.return_value = {'Valute': {
+            "USD": {'ID': 'R01235', 'NumCode': '840', 'CharCode': 'USD', 'Nominal': 1, 'Name': 'Доллар США',
+                    'Value': 88.9466, 'Previous': 89.4565}}}
+        assert transaction_amount(transaction_2) == 731262.91
+        mock_get.assert_called_once_with('https://www.cbr-xml-daily.ru/daily_json.js')
 
 # def test_error_transaction_amount(transaction_2):
 #     with pytest.raises(ValueError):
