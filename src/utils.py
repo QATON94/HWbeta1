@@ -4,7 +4,7 @@ from typing import Any
 import requests
 
 
-def transaction_json(json_file_path: Any) -> list | dict:
+def transaction_json(json_file_path: Any) -> list[Any] | dict[Any, Any]:
     """Функция возврощается список транзакций или пустой список
     param path_: Путь к json файлу с транзакциями
     return: возврощает пустой список если файл не найден, либо список транзакций
@@ -19,7 +19,7 @@ def transaction_json(json_file_path: Any) -> list | dict:
         return []
 
 
-def transaction_amount(transaction):
+def transaction_amount(transaction:list[dict]) -> float:
     """Функция возврощает сумму транзакций в рублях, если не в рублях выводит ошибку
     :param transaction: Словарь с данными о транзакции
     :return сумма транзакции
