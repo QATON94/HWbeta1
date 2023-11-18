@@ -10,7 +10,6 @@ def get_mask_cards_and_accounts(info: str) -> str:
         masked_info = name + " " + returning_account_mask(number)
     else:
         masked_info = name + " " + get_mask_card(number)
-
     return masked_info
 
 

@@ -9,7 +9,7 @@ def log(filename: Optional[str] = None) -> Callable:
     def wrapper(func: Callable) -> Callable:
         @wraps(func)
         def inner(*args: Any, **kwargs: Any) -> Any:
-            now_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            now_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             try:
                 result = func(*args, **kwargs)
                 log_mess = f"{now_date} {func.__name__} ok\n"
