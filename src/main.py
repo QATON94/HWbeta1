@@ -12,7 +12,7 @@ def main():
     logger.info(["Запуск программы..."])
 
     ROOT_PATH = Path(__file__).parent.parent
-    OPERATIONS_JSON = ROOT_PATH.joinpath("data", "test_csv.csv")
+    OPERATIONS_JSON = ROOT_PATH.joinpath("data", "test_excel.xlsx")
 
     transactions = transaction_json(OPERATIONS_JSON)
     pprint(transactions)

@@ -12,7 +12,7 @@ from src.generators import (
 
 # @pytest.fixture()
 # def transaction():
-#     with open(os.path.join("..", "data", "transactions.json"), encoding="UTF-8") as file:
+#     with open(os.path.join("data", "transactions.json"), encoding="UTF-8") as file:
 #         transactions = json.load(file)
 #     return transactions
 
