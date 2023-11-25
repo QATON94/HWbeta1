@@ -1,10 +1,9 @@
-import os
 from pathlib import Path
+from unittest.mock import patch
 
 import pytest
 
 from src.utils import transaction_amount, transaction_json
-from unittest.mock import patch
 
 ROOT_PATH = Path(__file__).parent.parent
 
