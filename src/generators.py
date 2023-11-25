@@ -1,3 +1,5 @@
+import re
+from collections import Counter
 from typing import Any
 
 
@@ -32,3 +34,41 @@ def card_number_generator(start: int, end: int) -> Any:
         str_number = str(number)
         num = num[: -(len(str_number))] + str_number
         yield " ".join(num[i: i + 4] for i in range(0, len(num), 4))
+
+
+def search_operations(transactions: list[dict], search_string: str) -> list[dict]:
+    """Функция принимает список словарей и возврощает список словарей в которых есть значение search_string
+    :param transactions: Список словорей с транзакциями
+    :param search_string: Слово поиска по операциям
+    :return: возврощает список словарей
+    """
+    operations_list = []
+    for item in transactions:
+        try:
+            if re.search(search_string, item["description"]):
+                operations_list.append(item)
+        except TypeError:
+            continue
+
+    return operations_list
+
+
+def get_transactions_categories(transactions: list) -> dict:
+    """Функция принимает список словарей с транзакциями и возврощает словарь с категориями операций"""
+    transactions_categories = {}
+    for row in transactions:
+            transactions_categories[row['description']] = 0
+    return transactions_categories
+
+
+def get_values_operations(transactions: list, operations_categories: dict) -> dict:
+    """
+    :param transactions: список славарей с транзакциями
+    :param operations_categories: словарь с категориями операций
+    ;:return возврощает словарь скаличеством операций в каждой категории
+    """
+    for row in transactions:
+        if row['description'] in operations_categories.keys():
+            operations_categories[row['description']] += 1
+    count = Counter(operations_categories)
+    return count
